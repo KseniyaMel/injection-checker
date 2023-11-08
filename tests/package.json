@@ -1,0 +1,10 @@
+{
+  "name": "injection-checker",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "locate-chrome": "^0.1.1",
+    "puppeteer": "^21.5.0",
+    "puppeteer-core": "^21.5.0"
+  }
+}
