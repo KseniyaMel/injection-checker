@@ -2,9 +2,11 @@
   "name": "injection-checker",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://kseniyamel.github.io/injection-checker",
   "dependencies": {
     "csv-parser": "^3.0.0",
     "dompurify": "^3.0.6",
+    "gh-pages": "^6.1.1",
     "puppeteer": "^21.5.0",
     "puppeteer-core": "^21.5.0",
     "puppeteer-firefox": "^0.5.1",
@@ -16,7 +18,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "eslintConfig": {
     "extends": [
@@ -35,5 +40,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^15.0.2",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "react-test-renderer": "^18.2.0"
   }
 }
