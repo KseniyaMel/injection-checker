@@ -2,7 +2,6 @@
   "name": "injection-checker",
   "version": "0.1.0",
   "private": true,
-  "main": "client/public/index.html",
   "homepage": "https://kseniyamel.github.io/injection-checker",
   "dependencies": {
     "csv-parser": "^3.0.0",
