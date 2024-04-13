@@ -21,6 +21,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: npm ci, build and test
         run: |
+          npm config set registry https://registry.npmjs.org
           npm install --force
           npm run build
           npm run test
