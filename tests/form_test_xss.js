@@ -29,7 +29,7 @@ async function check(page, validator, browser_name) {
 
     const elementText = await page.$eval('#result', element => element.textContent);
     const isSuccess = elementText === 'valid' ? 0 : elementText === 'not valid' ? 1 : null
-    results += `${payload['﻿ Id']},${endTime - startTime - 1000} мс,${payload.Label},${isSuccess}\n`;
+    results += `${payload['Id']},${endTime - startTime - 1000} мс,${payload.Label},${isSuccess}\n`;
   }
 
   fs.writeFileSync(`results_xss_${validator}_${browser_name}.csv`, results);
@@ -60,16 +60,5 @@ async function check(page, validator, browser_name) {
   } catch(e) {
     console.error(e)
   }
-  
-
-  // const firefox = await puppeteer.launch({
-  //   headless: true,
-	//   product: 'firefox',
-	//   args: [
-	//   '-wait-for-browser'
-	//   ]
-  // });
-
-  // await test(firefox, 'firefox');
 
 })();

@@ -4,9 +4,7 @@ import xssFilters from 'xss-filters';
 import * as yup from 'yup';
 
 const validationSchema = yup.object().shape({
-  field: yup
-    .string()
-    .matches(/^(?!(<script>|<\/script>)).*$/),
+  field: yup.string().matches(/<script|on\w+=|javascript:|<\/\w+\s*>|<img[\s\S]+on\w+\s*=/i)
 });
 
 function SimpleForm() {
@@ -17,31 +15,18 @@ function SimpleForm() {
   const handleSimpleInput = async (e) => {
     e.preventDefault();
     const text = e.target.elements.text.value;
-
     switch(validator){
       case 'DOMPurify': {
-        if(text === DOMPurify.sanitize(text)){
-          setResInput('valid')
-         } else {
-          setResInput('not valid')
-         }
+        if(text === DOMPurify.sanitize(text)){ setResInput('valid') } else { setResInput('not valid')}
          return;
       }
       case 'xssFilters': {
-        if(xssFilters.inHTMLData(text) === text){
-          setResInput('valid')
-         } else {
-          setResInput('not valid')
-         }
+        if(xssFilters.inHTMLData(text) === text){ setResInput('valid') } else { setResInput('not valid')}
          return;
       }
       case 'yup': {
         const validateText = await validationSchema.validate({ field: text})
-        if(validateText.field === text){
-          setResInput('valid')
-         } else {
-          setResInput('not valid')
-         }
+        if(validateText.field === text){ setResInput('valid') } else { setResInput('not valid') }
          return;
       }
       default: {
@@ -66,11 +51,7 @@ function SimpleForm() {
         <input type="radio" value="yup" name="validator" /> yup
       </div>
 
-      <form 
-        ref={formRef}
-        onSubmit={handleSimpleInput}
-        noValidate
-        >
+      <form ref={formRef} onSubmit={handleSimpleInput} noValidate>
         <label>
           Simple Form:
           <input name="text" id='form_input' type="text"/>

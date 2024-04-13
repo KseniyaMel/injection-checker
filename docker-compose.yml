@@ -1,5 +1,12 @@
 version: '3.8'
 services:
+  tests:
+    image: ghcr.io/puppeteer/puppeteer:latest
+    platform: linux/amd64
+    build: ./tests
+    container_name: tests
+    ports:
+      - '4000:4000'
   client:
     platform: linux/amd64
     build: ./client
@@ -8,3 +15,5 @@ services:
       - '3000:3000'
     stdin_open: true
     tty: true
+
+    
